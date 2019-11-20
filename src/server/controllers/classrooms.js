@@ -13,7 +13,7 @@ module.exports = (db) =>{
         console.log(req.params.id);
         console.log(req.body.input);
         try{
-            let updated = await db.classroom.update(req.params.id,req.body.input);
+            let updated = await db.classroom.updateNameById(req.params.id,req.body.input);
             res.send(true);
         }catch(error){
             console.log("classroom#update controller error")

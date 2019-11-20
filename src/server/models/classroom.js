@@ -17,7 +17,7 @@ module.exports = (dbPoolInstance) => {
 
     }
 
-    const update = async(classroom_id,new_name) =>{
+    const updateNameById = async(classroom_id,new_name) =>{
         try{
             const query = "UPDATE classrooms SET name = $1 WHERE id = $2 RETURNING *";
             const arr = [new_name,classroom_id];
@@ -34,7 +34,7 @@ module.exports = (dbPoolInstance) => {
 
     return {
         find,
-        update
+        updateNameById
     }
 
 }
