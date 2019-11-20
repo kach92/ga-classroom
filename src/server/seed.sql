@@ -1,0 +1,1 @@
+INSERT INTO classrooms (name) VALUES ('GA');

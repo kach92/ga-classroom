@@ -1,5 +1,5 @@
 const pg = require('pg');
-const pokemon = require('./models/pokemon');
+const classroom = require('./models/classroom');
 const url = require('url');
 
 var configs;
@@ -20,9 +20,9 @@ if( process.env.DATABASE_URL ){
 
 }else{
   configs = {
-    user: 'akira',
+    user: 'kach92',
     host: '127.0.0.1',
-    database: 'testdb',
+    database: 'gaclassroom',
     port: 5432
   };
 }
@@ -38,7 +38,7 @@ module.exports = {
   /*
    * ADD APP MODELS HERE
    */
-  pokemon: pokemon(pool),
+  classroom: classroom(pool),
 
   //make queries directly from here
   queryInterface: (text, params, callback) => {

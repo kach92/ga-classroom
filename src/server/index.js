@@ -3,6 +3,7 @@ const express = require('express');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const db = require('./db');
+const socketIO = require('socket.io')
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 process.env.PORT = process.env.PORT || 3000;
@@ -42,7 +43,24 @@ require('./routes')(app, db);
 
 // application routes (this goes last)
 setupAppRoutes(app);
+const server = http.createServer(app)
+const io = socketIO(server);
 
-http.createServer(app).listen(process.env.PORT, () => {
+io.on('connection', socket => {
+  console.log('User connected')
+
+  socket.on('details updated', (value) => {
+    console.log("IN INDEX.JS")
+    // once we get a 'change value' event from one of our clients, we will send it to the rest of the clients
+    // we make use of the socket.emit method again with the argument given to use from the callback function above
+    io.sockets.emit('details updated', value)
+  })
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
+  })
+});
+
+server.listen(process.env.PORT, () => {
   console.log(`HTTP server is now running on http://localhost:${process.env.PORT}`);
 });

@@ -26,7 +26,10 @@
     "test": "exit 1",
     "release:patch": "npm run lint && npx standard-version -r patch && git push --follow-tags origin master",
     "release:minor": "npm run lint && npx standard-version -r minor && git push --follow-tags origin master",
-    "release:major": "npm run lint && npx standard-version -r major && git push --follow-tags origin master"
+    "release:major": "npm run lint && npx standard-version -r major && git push --follow-tags origin master",
+    "createdb": "createdb gaclassroom -U kach92",
+    "migratedb": "psql -d gaclassroom -U kach92 -f src/server/tables.sql",
+    "seeddb": "psql -d gaclassroom -U kach92 -f src/server/seed.sql"
   },
   "postcss": {},
   "devDependencies": {
@@ -85,8 +88,10 @@
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-hot-loader": ">=4.6.5",
+    "react-router-dom": "^5.1.2",
     "request": "^2.88.0",
     "sanitize.css": ">=8.0.0",
+    "socket.io": "^2.3.0",
     "webpack": "^4.29.4",
     "webpack-dev-middleware": ">=3.5.2",
     "webpack-hot-middleware": ">=2.24.3",

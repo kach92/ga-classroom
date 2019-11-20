@@ -1,8 +1,8 @@
 module.exports = (app, db) => {
 
-  const pokemon = require('./controllers/pokemon')(db);
+  const classrooms = require('./controllers/classrooms')(db);
 
-  app.get('/pokemon/:id', pokemon.get);
+  app.get('/server_classroom/:id', classrooms.show);
+  app.post('/server_classroom/:id', classrooms.update);
 
-  app.get('/api/pokemon/:id', pokemon.apiget);
 };

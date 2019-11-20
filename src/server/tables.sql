@@ -1,5 +1,5 @@
 -- create pokemons table
-CREATE TABLE IF NOT EXISTS pokemons (
+CREATE TABLE IF NOT EXISTS classrooms (
   id SERIAL PRIMARY KEY,
-  name TEXT,
-  img TEXT);
+  name TEXT
+);
