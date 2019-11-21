@@ -1,5 +1,6 @@
 const pg = require('pg');
 const classroom = require('./models/classroom');
+const class1 = require('./models/class');
 const url = require('url');
 
 var configs;
@@ -39,6 +40,7 @@ module.exports = {
    * ADD APP MODELS HERE
    */
   classroom: classroom(pool),
+  class1 : class1(pool),
 
   //make queries directly from here
   queryInterface: (text, params, callback) => {

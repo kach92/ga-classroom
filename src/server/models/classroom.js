@@ -30,16 +30,15 @@ module.exports = (dbPoolInstance) => {
 
     }
 
-    const updateNameById = async(classroom_id,new_name) =>{
+    const updateAll = async(classroom_details) =>{
         try{
-            const query = "UPDATE classrooms SET name = $1 WHERE id = $2 RETURNING *";
-            const arr = [new_name,classroom_id];
-            let queryResult = await dbPoolInstance.query(query,arr);
-            if (queryResult.rows.length > 0) {
-                return queryResult.rows[0];
-            } else {
-                return Promise.reject(new Error("update classroom return null"));
-            }
+            classroom_details.forEach(async (x)=>{
+                const query = "UPDATE classrooms SET title = $1,instructor = $2,starttime = $3,endtime = $4,nickname = $5 WHERE id = $6"
+                const arr = [x.title,x.instructor,x.starttime,x.endtime,x.nickname,x.id];
+                const update = await dbPoolInstance.query(query,arr);
+            })
+            return true;
+
         }catch(error){
             console.log("classroom#update model error")
         }
@@ -48,7 +47,7 @@ module.exports = (dbPoolInstance) => {
     return {
         all,
         find,
-        updateNameById
+        updateAll
     }
 
 }

@@ -17,11 +17,12 @@ module.exports = (db) =>{
     }
 
     const update = async (req,res) =>{
-        console.log(req.params.id);
-        console.log(req.body.input);
+
         try{
-            let updated = await db.classroom.updateNameById(req.params.id,req.body.input);
-            res.send(true);
+            const update = await db.classroom.updateAll(req.body.data)
+            if(update){
+                res.send(true);
+            }
         }catch(error){
             console.log("classroom#update controller error")
         }

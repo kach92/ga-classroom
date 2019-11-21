@@ -2,7 +2,8 @@
 
 
 html, body {
-  background-color: white;
+
+  background-color: #efe8e8;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .navBar{
@@ -36,10 +37,10 @@ html, body {
     border-radius: 3px;
     color: #fff;
     background-color: #fa4542;
-    font-size: 1.125rem;
+    font-size: 15px;
     text-align: center;
     font-weight: 800;
-    padding: .8125rem 2rem;
+    padding: 10px 20px;
     border: 0;
     margin-bottom: 3px;
     display:block;
@@ -54,12 +55,16 @@ html, body {
     width:100%;
     display:flex;
     flex-direction: column;
+    margin-top:10px
 }
 
 .roomCard{
     border:1px solid black;
     margin:10px 0px;
     border-radius:5px;
+    padding:10px;
+    display:flex;
+    flex-direction: column;
 
     h3{
         text-align: center;
@@ -67,5 +72,28 @@ html, body {
         background-color:black;
         padding:5px 0;
         font-weight:bold;
+        font-size:23px
+    }
+
+    .timingContainer{
+        display:flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items:center;
+        input{
+            width:30%;
+        }
+        p{
+            padding:0;
+            margin:0;
+        }
+    }
+    select{
+        text-align-last: center;
+    }
+    input{
+        text-align: center;
+        background: transparent;
+        border:none;
     }
 }
