@@ -2,15 +2,22 @@ module.exports = (db) =>{
     const index  = async (req,res) => {
         try{
             const classrooms = await db.classroom.all();
-            res.send(classrooms);
+            const classes = await db.class1.all();
+
+            const data = {
+                classrooms,
+                classes
+            }
+            res.send(data);
         }catch(error){
             console.log("classrooms#index controller error")
         }
     }
     const show = async (req,res) => {
         try{
+            console.log(req.params.id)
             let classroom = await db.classroom.find(req.params.id);
-            res.send({name:classroom.name})
+            res.send(classroom)
         }catch(error){
             console.log("classrooms#show controller error")
         }

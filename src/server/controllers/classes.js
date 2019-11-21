@@ -8,9 +8,19 @@ module.exports = (db) =>{
         }
     }
 
+    const show = async (req,res) => {
+        try{
+            const class1 = await db.class1.find(req.params.id);
+            res.send(class1);
+        }catch(error){
+            console.log("classes#show controller error")
+        }
+    }
+
 
     return {
-        index
+        index,
+        show
 
     }
 }

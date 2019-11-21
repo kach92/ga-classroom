@@ -7,37 +7,66 @@ class RoomRow extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            class_id:null
+            room_id:null,
+            details:null,
+            classes:null
         }
     }
 
     componentDidMount(){
-        this.setState({class_id:this.props.roomDetails.id})
+        this.setState({
+            room_id:this.props.roomDetails.id,
+            details:this.props.roomDetails,
+            classes:this.props.allClasses
+        })
+
     }
 
-    onChangeHandler(e,column){
-        this.props.updateRoomState(e.target.value,this.state.class_id,column);
+
+    getClassDetails(class_id){
+        const url = "/server_class/"+class_id;
+        return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            this.setState({details:res});
+            return res;
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+
+
+    async nickSelectChange(e){
+            const class_id = e.target.value;
+            const newClassDetails = await this.getClassDetails(class_id);
+            this.props.updateRoomWholeState(this.state.room_id,newClassDetails);
+            console.log(newClassDetails)
+
     }
 
     render(){
-        const details = this.props.roomDetails;
-        const classes = this.props.allClasses.map(x=><option key={x.id}value={x.nickname}>{x.nickname}</option>)
+        const details = this.state.details ? this.state.details : "";
+        const room_id = this.state.room_id ? this.state.room_id : "";
+        const classes = this.state.classes? this.state.classes.sort((a,b)=>a.id === details.class_id? -1 : b.id === details.class_id ? 1: 0).map(x=><option key={x.id}value={x.id}>{x.nickname}</option>) : "";
         return(
                 <div className={mainStyles.roomCard}>
-                    <h3>Classroom {details.id}</h3>
+                    <h3>Classroom {room_id}</h3>
 
-                        <select>
-                            <option value={details.nickname}>{details.nickname}</option>
+                        <select onChange={(e)=>{this.nickSelectChange(e)}}>
                             {classes}
-                            }
                         </select>
 
-                        <input defaultValue={details.title} type="text" onChange={(e)=>{this.onChangeHandler(e,"title")}}/>
-                        <input defaultValue={details.instructor} type="text" onChange={(e)=>{this.onChangeHandler(e,"instructor")}}/>
+                        <p>{details.title}</p>
+                        <p>{details.instructor}</p>
                         <div className={mainStyles.timingContainer}>
-                            <input type="text" defaultValue={details.starttime} onChange={(e)=>{this.onChangeHandler(e,"starttime")}}/>
+                            <p>{details.starttime}</p>
                             <p>-</p>
-                            <input type="text" defaultValue={details.endtime} onChange={(e)=>{this.onChangeHandler(e,"endtime")}}/>
+                            <p>{details.endtime}</p>
                         </div>
 
 

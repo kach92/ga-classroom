@@ -23,6 +23,9 @@ html, body {
 .navLink{
     color:white;
     margin:10px;
+    &:hover{
+        text-decoration:none;
+    }
 }
 
 .mainContainer{
@@ -91,9 +94,9 @@ html, body {
     select{
         text-align-last: center;
     }
-    input{
+    p{
         text-align: center;
-        background: transparent;
-        border:none;
+        height:auto;
     }
+
 }

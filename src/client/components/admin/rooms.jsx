@@ -10,18 +10,18 @@ class Rooms extends React.Component {
         super(props);
         this.state = {
             endpoint : "http://localhost:3000/",
-            rooms:[],
-            classes:[]
+            rooms:null,
+            classes:null
         }
 
-        this.updateRoomState = this.updateRoomState.bind(this);
+        this.updateRoomWholeState = this.updateRoomWholeState.bind(this);;
     }
 
-    saveChanges(){
+    async saveChanges(){
         const data = {
             data:this.state.rooms
         }
-        fetch('/server_classrooms', {
+        return fetch('/server_classrooms', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -34,17 +34,26 @@ class Rooms extends React.Component {
         })
         .catch(error => console.error('Error:', error));
     }
-    updateRoomState(value,class_id,column){
-        this.state.rooms[class_id-1][column] = value.toUpperCase();
+
+
+    updateRoomWholeState(room_id,newClassDetails){
+        this.state.rooms[room_id-1] = {
+            id : room_id,
+            class_id : newClassDetails.class_id,
+            title : newClassDetails.title,
+            instructor : newClassDetails.instructor,
+            starttime : newClassDetails.starttime,
+            endtime : newClassDetails.endtime,
+            nickname : newClassDetails.nickname
+        };
         this.setState({rooms:this.state.rooms});
-        console.log("ITS UPDATING")
-    }
-    componentDidMount(){
-        this.getRoomsData();
-        this.getAllClasses();
     }
 
-    getRoomsData(){
+    componentDidMount(){
+        this.getRoomsDataAndClasses();
+    }
+
+    getRoomsDataAndClasses(){
         const url = "/server_classrooms/";
         fetch(url, {
             method: 'GET',
@@ -54,25 +63,16 @@ class Rooms extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
-            this.setState({rooms:res})
+            console.log(res)
+            this.setState({
+                rooms:res.classrooms,
+                classes:res.classes
+            })
         })
         .catch(error => console.error('Error:', error));
     }
 
-    getAllClasses(){
-        const url = "/server_classes/";
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(res => {
-            this.setState({classes:res})
-        })
-        .catch(error => console.error('Error:', error));
-    }
+
 
     sendSocket(){
         const socket = socketIOClient(this.state.endpoint);
@@ -99,7 +99,9 @@ class Rooms extends React.Component {
     }
 
     render(){
-        const currentClasses = this.state.rooms.map(x=><RoomRow key={x.id} roomDetails={x} allClasses={this.state.classes} updateRoomState={this.updateRoomState} />)
+        console.log(this.state)
+        const classes = this.state.classes? this.state.classes : "";
+        const currentClasses = this.state.rooms? this.state.rooms.map(x=><RoomRow key={x.id} roomDetails={x} allClasses={this.state.classes} updateRoomWholeState={this.updateRoomWholeState}/>) : "";
         return(
                 <div >
 

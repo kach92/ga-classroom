@@ -1,7 +1,7 @@
 module.exports = (dbPoolInstance) => {
     const all = async() => {
         try{
-            const query = 'SELECT * FROM classrooms ORDER BY id ASC';
+            const query = 'SELECT classrooms.id, classes.id AS class_id, classes.title,classes.instructor,classes.starttime,classes.endtime,classes.nickname FROM classrooms LEFT OUTER JOIN classes ON (classrooms.class_id = classes.id) ORDER BY id ASC';
             const queryResult = await dbPoolInstance.query(query);
             if (queryResult.rows.length > 0) {
                 return queryResult.rows;
@@ -33,8 +33,8 @@ module.exports = (dbPoolInstance) => {
     const updateAll = async(classroom_details) =>{
         try{
             classroom_details.forEach(async (x)=>{
-                const query = "UPDATE classrooms SET title = $1,instructor = $2,starttime = $3,endtime = $4,nickname = $5 WHERE id = $6"
-                const arr = [x.title,x.instructor,x.starttime,x.endtime,x.nickname,x.id];
+                const query = "UPDATE classrooms SET class_id = $1 WHERE id = $2"
+                const arr = [x.class_id,x.id];
                 const update = await dbPoolInstance.query(query,arr);
             })
             return true;
