@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import socketIOClient from "socket.io-client";
+import mainStyles from '../../style.scss';
 
 class Classroom extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            name:null
+            details:null
         }
     }
 
@@ -20,7 +21,8 @@ class Classroom extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
-            this.setState({name:res.name})
+            console.log(res)
+            this.setState({details:res})
         })
         .catch(error => console.error('Error:', error));
     }
@@ -40,10 +42,27 @@ class Classroom extends React.Component {
 
         })
         console.log("IN CLASSROOM")
+
+        const details = this.state.details? this.state.details : "";
         return(
-                <div>
-                    <h1>Hello</h1>
-                    <h2>{this.state.name}</h2>
+                <div className={mainStyles.displayContainer}>
+                    <h2>{details.title}</h2>
+                    <div className={mainStyles.horizontalLine}></div>
+                    <div className={mainStyles.classroomContentContainer}>
+                        <p>CLASSROOM {details.id}</p>
+                        <p>{details.instructor}</p>
+                        <p>{details.starttime} - {details.endtime}</p>
+                    </div>
+                    <div className={mainStyles.classroomFooterContainer}>
+                        <img src="https://ga-core.s3.amazonaws.com/production/uploads/program/default_image/9142/thumb_CMYK-Red_Small_GeneralAssembly-Cog.png" className={mainStyles.navImage}/>
+
+                        <h3>GENERAL ASSEMBLY</h3>
+
+                    </div>
+
+
+
+
                 </div>
             )
     }

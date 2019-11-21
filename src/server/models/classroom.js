@@ -15,7 +15,7 @@ module.exports = (dbPoolInstance) => {
 
     const find = async(classroom_id) =>{
         try{
-            const query = "SELECT * FROM classrooms WHERE id = $1";
+            const query = "SELECT classrooms.id, classes.id AS class_id, classes.title,classes.instructor,classes.starttime,classes.endtime,classes.nickname FROM classrooms INNER JOIN classes ON (classrooms.class_id = classes.id) WHERE classrooms.id = $1";
             const arr = [classroom_id];
             const queryResult = await dbPoolInstance.query(query,arr);
             if (queryResult.rows.length > 0) {

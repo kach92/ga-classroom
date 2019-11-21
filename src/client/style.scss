@@ -100,3 +100,108 @@ html, body {
     }
 
 }
+
+.classCard{
+    margin:10px 0;
+    background-color:white;
+    box-shadow:2px 2px 2px 2px;
+    border-radius:5px;
+
+    .nicknameContainer{
+        display:flex;
+        padding:10px 10px;
+        background-color:black;
+        height:auto;
+        justify-content: space-between;
+        border-radius:5px 5px 0 0;
+
+
+        h4{
+            margin:0;
+            color:white;
+            font-size:20px;
+            font-weight:bold;
+
+        }
+
+        .editDeleteContainer{
+            color:white;
+            display: flex;
+            align-items:center;
+            font-size: 25px;
+            margin-left:10px;
+            .editBtn{
+                padding-right:10px;
+            }
+
+        }
+
+    }
+
+    .classCardContentContainer{
+        padding:10px;
+
+        p{
+            padding:0;
+            margin:0;
+            font-size:15px;
+            font-weight:bold;
+            margin-bottom:10px;
+        }
+
+        .courseTitle{
+            font-size:20px;
+            line-height:22px;
+        }
+    }
+
+}
+
+.displayContainer{
+    background-color:black;
+    height:100vh;
+    padding:0 90px;
+    padding-top: 110px;
+    color:white;
+    h2{
+        font-size: 64px;
+        font-weight:bold;
+        line-height:90px;
+        height:411px;
+    }
+
+    .horizontalLine{
+        margin:20px 0;
+        margin-bottom:50px;
+        border-bottom:10px solid white;
+    }
+
+    .classroomContentContainer{
+        height:270px;
+    }
+    p{
+        font-size:40px;
+        font-weight:bold;
+        margin:0;
+        margin-bottom:-10px;
+    }
+
+    .classroomFooterContainer{
+        display:flex;
+        align-items:center;
+        justify-content: center;
+
+        h3{
+            font-size:30px;
+            margin:0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight:900;
+            transform: scale(1,1.4);
+        }
+
+        img{
+            width:100px;
+            height:100px;
+        }
+    }
+}

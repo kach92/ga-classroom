@@ -99,11 +99,10 @@ class Rooms extends React.Component {
     }
 
     render(){
-        console.log(this.state)
         const classes = this.state.classes? this.state.classes : "";
         const currentClasses = this.state.rooms? this.state.rooms.map(x=><RoomRow key={x.id} roomDetails={x} allClasses={this.state.classes} updateRoomWholeState={this.updateRoomWholeState}/>) : "";
         return(
-                <div >
+                <div className={mainStyles.mainContainer}>
 
                     <h1 className={mainStyles.title}>Classrooms</h1>
                     <button className={mainStyles.btn} style={{margin:"0 auto"}} onClick={(e)=>{this.saveChanges(e)}}>Save Changes</button>

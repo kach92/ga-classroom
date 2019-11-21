@@ -8,6 +8,7 @@ import Classroom from './components/classroom/classroom';
 import AdminHome from './components/admin/admin';
 import Rooms from './components/admin/rooms';
 import Navigation from './components/navigation/navigation';
+import ClassIndex from './components/classes/index';
 
 
 
@@ -29,21 +30,24 @@ class App extends React.Component {
                 <Route path="/admin" render={props => (
                     <Navigation {...props}/>
                     )}/>
-                <div className={mainStyles.mainContainer}>
+
+
                     <Route exact path="/" render={props => (
                         <Redirect to="/admin"/>
                         )}/>
-                    <Route path="/classrooms/:id" render={props =>(
-                        <Classroom {...props}/>
-                    )}/>
+
                     <Route exact path="/admin" render={props =>(
                         <AdminHome {...props}/>
                     )}/>
                     <Route path="/admin/rooms" render={props => (
                         <Rooms />
                         )} />
-                </div>
-
+                    <Route path="/admin/classes" render={props => (
+                        <ClassIndex />
+                        )} />
+                    <Route path="/classrooms/:id" render={props =>(
+                        <Classroom {...props}/>
+                    )}/>
             </Router>
 
         );

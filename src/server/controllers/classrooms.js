@@ -15,7 +15,6 @@ module.exports = (db) =>{
     }
     const show = async (req,res) => {
         try{
-            console.log(req.params.id)
             let classroom = await db.classroom.find(req.params.id);
             res.send(classroom)
         }catch(error){
