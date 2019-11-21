@@ -1,5 +1,12 @@
 module.exports = (db) =>{
-
+    const index  = async (req,res) => {
+        try{
+            const classrooms = await db.classroom.all();
+            res.send(classrooms);
+        }catch(error){
+            console.log("classrooms#index controller error")
+        }
+    }
     const show = async (req,res) => {
         try{
             let classroom = await db.classroom.find(req.params.id);
@@ -21,6 +28,7 @@ module.exports = (db) =>{
     }
 
     return {
+        index,
         show,
         update
     }

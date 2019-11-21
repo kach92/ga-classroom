@@ -1,4 +1,17 @@
 module.exports = (dbPoolInstance) => {
+    const all = async() => {
+        try{
+            const query = 'SELECT * FROM classrooms ORDER BY id ASC';
+            const queryResult = await dbPoolInstance.query(query);
+            if (queryResult.rows.length > 0) {
+                return queryResult.rows;
+            } else {
+                return Promise.reject(new Error("classroom#all return null"));
+            }
+        }catch(error){
+            console.log("classroom#all model error")
+        }
+    }
 
     const find = async(classroom_id) =>{
         try{
@@ -33,6 +46,7 @@ module.exports = (dbPoolInstance) => {
     }
 
     return {
+        all,
         find,
         updateNameById
     }

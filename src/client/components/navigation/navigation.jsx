@@ -16,9 +16,8 @@ class Navigation extends React.Component {
         return(
             <div className={mainStyles.navBar}>
                 <img src="https://ga-core.s3.amazonaws.com/production/uploads/program/default_image/9142/thumb_CMYK-Red_Small_GeneralAssembly-Cog.png" className={mainStyles.navImage}/>
-                <div>
-
-                </div>
+                <Link to="/admin/rooms" className={mainStyles.navLink}>Rooms</Link>
+                <Link to="/admin/classes" className={mainStyles.navLink}>Classes</Link>
             </div>
         )
     }

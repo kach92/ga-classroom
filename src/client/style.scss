@@ -1,14 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
+
 html, body {
   background-color: white;
-  min-width: 700px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .navBar{
-    height:100px;
+    height:60px;
     width:100%;
     background-color:black;
+    display:flex;
+    align-items: center;
+    font-family: 'Anton', sans-serif;
 }
 .navImage{
-    width:100px;
-    height:100px;
+    width:60px;
+    height:60px;
+    margin-left:20px;
+}
+
+.navLink{
+    color:white;
+    margin:10px;
+}
+
+.mainContainer{
+    padding:20px;
+    padding-top:0px;
+    box-sizing: border-box;
+}
+
+.btn{
+    box-shadow: 0 3px 0 0 #a20101;
+    text-decoration: none;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #fa4542;
+    font-size: 1.125rem;
+    text-align: center;
+    font-weight: 800;
+    padding: .8125rem 2rem;
+    border: 0;
+    margin-bottom: 3px;
+    display:block;
+
+}
+
+.title{
+    font-weight:bold;
+}
+
+.subContainer{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+}
+
+.roomCard{
+    border:1px solid black;
+    margin:10px 0px;
+    border-radius:5px;
+
+    h3{
+        text-align: center;
+        color:white;
+        background-color:black;
+        padding:5px 0;
+        font-weight:bold;
+    }
 }
