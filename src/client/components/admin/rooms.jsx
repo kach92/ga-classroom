@@ -31,6 +31,7 @@ class Rooms extends React.Component {
         .then(res => res.json())
         .then(res => {
             console.log("save changes done")
+            this.sendSocket();
         })
         .catch(error => console.error('Error:', error));
     }
@@ -79,24 +80,6 @@ class Rooms extends React.Component {
         socket.emit('details updated', true) // change 'red' to this.state.color
     }
 
-    send (){
-        let data = {
-            input : this.refs.input.value
-        }
-        const url = '/server_classroom/1'
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .then(res => {
-            this.sendSocket();
-        })
-        .catch(error => console.error('Error:', error));
-    }
 
     render(){
         const classes = this.state.classes? this.state.classes : "";
