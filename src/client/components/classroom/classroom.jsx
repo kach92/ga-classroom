@@ -9,6 +9,7 @@ class Classroom extends React.Component {
         this.state = {
             details:null
         }
+
     }
 
     getData(){
@@ -27,11 +28,23 @@ class Classroom extends React.Component {
     }
 
     componentDidMount(){
-        this.getData()
+        this.getData();
+        this.setUrl();
+    }
+
+    setUrl(){
+        let URL = window.location.href;
+        if( URL.includes("http://127.0.0.1") ){
+            this.endpoint = "http://localhost";
+        }else if( URL.includes("http://localhost") ){
+            this.endpoint = "http://localhost";
+        }else{
+            this.endpoint = "https://ga-classroom-display.herokuapp.com";
+        }
     }
 
     render(){
-        const socket = socketIOClient(this.state.endpoint);
+        const socket = socketIOClient();
         socket.on('details updated', (value) => {
             if(value){
                 this.getData()

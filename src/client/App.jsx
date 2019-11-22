@@ -16,10 +16,6 @@ import ClassIndex from './components/classes/index';
 class App extends React.Component {
     constructor() {
         super();
-        this.state = {
-            name:null,
-            endpoint:"/localhost:3000/"
-        }
     }
 
 

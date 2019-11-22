@@ -9,7 +9,7 @@ class Rooms extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            endpoint : "http://localhost:3000/",
+            endpoint : null,
             rooms:null,
             classes:null
         }
@@ -52,6 +52,20 @@ class Rooms extends React.Component {
 
     componentDidMount(){
         this.getRoomsDataAndClasses();
+        this.setUrl();
+
+    }
+
+    setUrl(){
+        let URL = window.location.href;
+        if( URL.includes("http://127.0.0.1") ){
+            this.state.endpoint = "http://127.0.0.1:3000";
+        }else if( URL.includes("http://localhost") ){
+            this.state.endpoint = "http://127.0.0.1:3000";
+        }else{
+            this.state.endpoint = "https://ga-classroom-display.herokuapp.com";
+        }
+        this.setState({endpoint:this.state.endpoint})
     }
 
     getRoomsDataAndClasses(){
