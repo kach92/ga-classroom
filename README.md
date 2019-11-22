@@ -1,60 +1,42 @@
-React boilerplate with ES2015, Express.js, and Webpack
+# GA Classroom Display Controller
 
-## Technologies
+![ga-classroom-image](https://user-images.githubusercontent.com/50238797/69441373-9338b500-0d85-11ea-889e-409afc8728b6.PNG)
 
-- React (v16)
-- Express.js (v4) as production and development server
-- Webpack 4 (production and development configurations)
-- SCSS support (+ sanitize.css included)
-- ES2015+
+Built by - [Kenny Ang](https://github.com/kach92)<br/>
+Check out the full app here! https://ga-classroom-display.herokuapp.com/
 
-## Features
-- preconfigured eslint and Prettier code formatter
-- React Hot Loader
-- Linux/MacOS/Windows
+## Objective
+A simple app to ease administration's job by allowing them to modify the classes' display with just the use of their phones!
 
-## Usage
+## Technologies used
+- React.Js, Node.Js, Express.Js and PostgreSql
+- Socket.io
 
-### Make sure you have nodemon installed globally
+Main objective of the app is the ease of changing the classrooms' display dynamically at anytime any anywhere live. Therefore the Mobile-first design method is used, due to the fact that the displays used outside the classrooms are iPads and it will easier to make changes using a phone. Socket.io is also used so that any changes made will be reflected at once on all displays outside each classroom.
+
+## Installation Instructions
+1. Installs all the dependencies of the project is using
 ```
-npm install -g nodemon
-```
-
-### Installation
-```bash
-git clone https://github.com/wdi-sg/react-express-webpack.git
-cd react-express-webpack
 npm install
-
-
-# remove boilerplate git references
-rm ./.git
+````
+2. Create the Postgres db for running on local
 ```
-
-### Scripts
-```bash
-# run development mode
-npm run dev
-
-# run production mode
-npm run build
-npm start
-
-# run prettier
-npm run prettier
-
-# run lint
-npm run lint
-
-# run on a different port
-HTTP_PORT=3001 npm run dev
+createdb DATABASE_NAME -U USERNAME
+````
+3. Creates the tables neccessary to run this project
 ```
+psql -d DATABASE_NAME -U USERNAME -f tables.sql
+````
+4. Seed dummy data
+```
+psql -d DATABASE_NAME -U USERNAME -f seed.sql
+````
 
-### Deploy
+## Functions of App
+- Create and delete classes
+- Select or change a class for each classroom and save changes
+- Any changes will be updated and reflected immediately on each display outside the classroom
 
-Some operating systems do not copy the server files to the build directory.
-
-See the documentation here: [https://github.com/calvinmetcalf/copyfiles/blob/master/readme.md](https://github.com/calvinmetcalf/copyfiles/blob/master/readme.md)
-
-## License
-MIT License. Free use and change.
+## Further functions to be added
+- Administrator Login
+- Edit classes
