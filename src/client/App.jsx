@@ -1,7 +1,7 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
 import socketIOClient from "socket.io-client";
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
 import mainStyles from './style.scss';
 
 import Classroom from './components/classroom/classroom';
@@ -28,22 +28,20 @@ class App extends React.Component {
                     )}/>
 
 
-                    <Route exact path="/" render={props => (
-                        <Redirect to="/admin"/>
+                    <Switch>
+                        <Route path="/admin/rooms" render={props => (
+                            <Rooms />
+                            )} />
+                        <Route path="/admin/classes" render={props => (
+                            <ClassIndex />
+                            )} />
+                        <Route path="/classrooms/:id" render={props =>(
+                            <Classroom {...props}/>
                         )}/>
-
-                    <Route exact path="/admin" render={props =>(
-                        <AdminHome {...props}/>
-                    )}/>
-                    <Route path="/admin/rooms" render={props => (
-                        <Rooms />
-                        )} />
-                    <Route path="/admin/classes" render={props => (
-                        <ClassIndex />
-                        )} />
-                    <Route path="/classrooms/:id" render={props =>(
-                        <Classroom {...props}/>
-                    )}/>
+                        <Route render={props =>(
+                            <Redirect to="/admin/rooms"/>
+                        )}/>
+                    </Switch>
             </Router>
 
         );
