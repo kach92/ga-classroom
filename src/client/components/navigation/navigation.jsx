@@ -25,12 +25,14 @@ class Navigation extends React.Component {
                 <Nav className="mr-auto">
                   <Nav.Link href="/admin/rooms" className={mainStyles.navLink}>Rooms</Nav.Link>
                   <Nav.Link href="/admin/classes" className={mainStyles.navLink}>Classes</Nav.Link>
-                  <NavDropdown className={mainStyles.navLink} title="Dropdown" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                  <NavDropdown className={mainStyles.navLink} title="View Display" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="/classrooms/1">CLASSROOM 1</NavDropdown.Item>
+                    <NavDropdown.Item href="/classrooms/2">CLASSROOM 2</NavDropdown.Item>
+                    <NavDropdown.Item href="/classrooms/3">CLASSROOM 3</NavDropdown.Item>
+                    <NavDropdown.Item href="/classrooms/4">CLASSROOM 4</NavDropdown.Item>
+                    <NavDropdown.Item href="/classrooms/5">CLASSROOM 5</NavDropdown.Item>
+                    <NavDropdown.Item href="/classrooms/6">CLASSROOM 6</NavDropdown.Item>
+
                   </NavDropdown>
                 </Nav>
               </Navbar.Collapse>

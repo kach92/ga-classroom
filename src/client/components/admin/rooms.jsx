@@ -87,7 +87,7 @@ class Rooms extends React.Component {
         return(
                 <div className={mainStyles.mainContainer}>
 
-                    <h1 className={mainStyles.title}>Classrooms</h1>
+                    <h1 className={mainStyles.title}>CLASSROOMS</h1>
                     <button className={mainStyles.btn} style={{margin:"0 auto"}} onClick={(e)=>{this.saveChanges(e)}}>Save Changes</button>
                     <div className={mainStyles.subContainer}>
                         {currentClasses}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import socketIOClient from "socket.io-client";
+import {Link} from "react-router-dom";
 import mainStyles from '../../style.scss';
 
 class RoomRow extends React.Component {
@@ -8,10 +9,6 @@ class RoomRow extends React.Component {
         super(props);
         this.state={
         }
-    }
-
-    componentDidMount(){
-
     }
 
 

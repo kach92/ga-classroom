@@ -28,10 +28,28 @@ module.exports = (dbPoolInstance) => {
         }
     }
 
+    const save = async (details) => {
+        try{
+            console.log(details);
+            const query = "INSERT INTO classes (title,instructor,starttime,endtime,nickname) VALUES ($1,$2,$3,$4,$5) RETURNING *";
+            const arr = [details.title,details.instructor,details.starttime,details.endtime,details.nickname];
+            const queryResult = await dbPoolInstance.query(query,arr);
+            if (queryResult.rows.length > 0) {
+                return queryResult.rows[0];
+            } else {
+                return Promise.reject(new Error("class#save return null"));
+            }
+        }catch(error){
+            console.log(error)
+            console.log("class#save model error");
+        }
+    }
+
 
     return {
         all,
-        find
+        find,
+        save
     }
 
 }

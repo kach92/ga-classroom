@@ -4,7 +4,7 @@ module.exports = (db) =>{
             const classes = await db.class1.all();
             res.send(classes);
         }catch(error){
-            console.log("classes#index controller error")
+            console.log("classes#index controller error");
         }
     }
 
@@ -13,14 +13,25 @@ module.exports = (db) =>{
             const class1 = await db.class1.find(req.params.id);
             res.send(class1);
         }catch(error){
-            console.log("classes#show controller error")
+            console.log("classes#show controller error");
+        }
+    }
+
+    const create = async (req,res) => {
+        try{
+            const newClass = await db.class1.save(req.body.data);
+            res.send(newClass);
+        }catch(error){
+            console.log(error);
+            console.log("classes#create controller error");
         }
     }
 
 
     return {
         index,
-        show
+        show,
+        create
 
     }
 }
