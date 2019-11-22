@@ -56,19 +56,18 @@ class RoomRow extends React.Component {
         return(
                 <div className={mainStyles.roomCard}>
                     <h3>Classroom {room_id}</h3>
-
+                    <div className={mainStyles.roomCardSubContainer}>
                         <select onChange={(e)=>{this.nickSelectChange(e)}}>
                             {classes}
                         </select>
 
+
                         <p>{details.title}</p>
                         <p>{details.instructor}</p>
                         <div className={mainStyles.timingContainer}>
-                            <p>{details.starttime}</p>
-                            <p>-</p>
-                            <p>{details.endtime}</p>
+                            <p>{details.starttime} - {details.endtime}</p>
                         </div>
-
+                    </div>
 
                 </div>
 
