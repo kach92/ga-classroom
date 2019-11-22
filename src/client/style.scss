@@ -200,6 +200,10 @@ html, body {
         }
     }
 
+    th{
+        width:300px;
+    }
+
 }
 
 .displayContainer{
@@ -257,6 +261,12 @@ html, body {
 
 .errorMsg{
     color:red;
+}
+
+.deleteTable{
+    th{
+        width:100px;
+    }
 }
 
 .container {

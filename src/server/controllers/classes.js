@@ -27,11 +27,22 @@ module.exports = (db) =>{
         }
     }
 
+    const deleteClass = async (req,res) => {
+        try{
+            const deletedClass = await db.class1.deleteClass(req.params.id);
+            res.send(deletedClass);
+        }catch(error){
+            console.log(error);
+            console.log("classes#delete controller error");
+        }
+    }
+
 
     return {
         index,
         show,
-        create
+        create,
+        deleteClass
 
     }
 }

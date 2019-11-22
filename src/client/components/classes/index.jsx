@@ -4,7 +4,6 @@ import mainStyles from '../../style.scss';
 import ClassRow from './classrow'
 import {Link} from "react-router-dom";
 import {Modal,Button,InputGroup,FormControl,Form} from 'react-bootstrap';
-import classNames from 'classnames';
 
 class ClassIndex extends React.Component {
     constructor(props){
@@ -22,6 +21,8 @@ class ClassIndex extends React.Component {
             },
             errorMsg : ""
         }
+
+        this.handleDelete = this.handleDelete.bind(this);
 
     }
 
@@ -47,15 +48,15 @@ class ClassIndex extends React.Component {
         this.getAllClasses();
     }
 
-    handleClose(){
-        this.setState({
-            show:false,
-            errorMsg:""
-        })
+    handleClose(e){
+            this.setState({
+                show:false,
+                errorMsg:""
+            })
     }
 
-    handleOpen(){
-        this.setState({show:true})
+    handleOpen(e){
+            this.setState({show:true})
     }
 
     handleChange(e,attr){
@@ -82,6 +83,10 @@ class ClassIndex extends React.Component {
         .catch(error => console.error('Error:', error));
     }
 
+    handleDelete(class_id){
+        location.reload();
+    }
+
     checkSave(e){
         e.preventDefault();
         let details = this.state.new
@@ -103,7 +108,7 @@ class ClassIndex extends React.Component {
 
 
     render(){
-        const classList = this.state.classesDisplay? this.state.classesDisplay.map(x=><ClassRow key={x.id} details={x}/>) : "";
+        const classList = this.state.classesDisplay? this.state.classesDisplay.map(x=><ClassRow handleDelete={this.handleDelete} key={x.id} details={x}/>) : "";
         return(
 
                 <div className={mainStyles.mainContainer}>
@@ -165,6 +170,8 @@ class ClassIndex extends React.Component {
                               </Button>
                             </Modal.Footer>
                     </Modal>
+
+
                 </div>
 
             )
