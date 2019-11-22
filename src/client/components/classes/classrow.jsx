@@ -53,7 +53,6 @@ class RoomRow extends React.Component {
                     <div className={mainStyles.nicknameContainer}>
                        <h4>{details.nickname}</h4>
                        <div className={mainStyles.editDeleteContainer}>
-                            <i className={`bx bxs-edit ${mainStyles.editBtn}`}></i>
                             <i className={`bx bx-trash ${mainStyles.deleteBtn}`} onClick={(e)=>{this.handleOpen(e)}}></i>
                        </div>
 
