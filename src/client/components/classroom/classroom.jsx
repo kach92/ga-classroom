@@ -21,7 +21,6 @@ class Classroom extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
-            console.log(res)
             this.setState({details:res})
         })
         .catch(error => console.error('Error:', error));
@@ -34,14 +33,11 @@ class Classroom extends React.Component {
     render(){
         const socket = socketIOClient(this.state.endpoint);
         socket.on('details updated', (value) => {
-            console.log(value)
-            console.log("///////////////////////")
             if(value){
                 this.getData()
             }
 
         })
-        console.log("IN CLASSROOM")
 
         const details = this.state.details? this.state.details : "";
         return(

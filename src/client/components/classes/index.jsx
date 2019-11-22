@@ -11,6 +11,7 @@ class ClassIndex extends React.Component {
         super(props);
         this.state = {
             classes : null,
+            classesDisplay:null,
             show:false,
             new:{
                 nickname:"",
@@ -34,7 +35,10 @@ class ClassIndex extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
-            this.setState({classes:res});
+            this.setState({
+                classes:res,
+                classesDisplay:res
+            });
         })
         .catch(error => console.error('Error:', error));
     }
@@ -89,15 +93,27 @@ class ClassIndex extends React.Component {
         }
     }
 
+    search(e){
+        const input = e.target.value.toLowerCase();
+        this.state.classesDisplay = this.state.classes.filter(x=>x.title.toLowerCase().includes(input) || x.instructor.toLowerCase().includes(input) || x.nickname.toLowerCase().includes(input)
+            );
+        this.setState({classesDisplay:this.state.classesDisplay});
+    }
+
 
 
     render(){
-        const classList = this.state.classes? this.state.classes.map(x=><ClassRow key={x.id} details={x}/>) : "";
+        const classList = this.state.classesDisplay? this.state.classesDisplay.map(x=><ClassRow key={x.id} details={x}/>) : "";
         return(
 
                 <div className={mainStyles.mainContainer}>
                     <h1 className={mainStyles.title}>Classes</h1>
                     <button className={mainStyles.btn} style={{margin:"0 auto"}} onClick={(e)=>{this.handleOpen(e)}}>Add New Class</button>
+                    <div className={mainStyles.container}>
+                      <input type="text" placeholder="Search..." onChange={(e)=>{this.search(e)}}
+                      />
+                      <div className={mainStyles.search}></div>
+                    </div>
                     <div className={mainStyles.subContainer}>
                         {classList}
                     </div>
