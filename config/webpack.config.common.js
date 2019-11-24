@@ -3,13 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const dotenv = require('dotenv');
-const env = dotenv.config().parsed;
 
-  // reduce it to a nice object, the same as before
-  const envKeys = Object.keys(env).reduce((prev, next) => {
-    prev[`process.env.${next}`] = JSON.stringify(env[next]);
-    return prev;
-  }, {});
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
 
@@ -82,8 +76,7 @@ module.exports = {
       filename: '[name].css',
       disable: IS_DEV
     }),
-    new webpack.EnvironmentPlugin(['NODE_ENV']),
-    new webpack.DefinePlugin(envKeys)
+    new webpack.EnvironmentPlugin(['NODE_ENV'])
   ],
   resolve: {
     modules: ['node_modules', join('src', 'client')],
