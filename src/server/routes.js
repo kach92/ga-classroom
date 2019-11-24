@@ -5,6 +5,7 @@ module.exports = (app, db) => {
   const admins = require('./controllers/admins')(db);
 
   app.post('/login',admins.login);
+  app.get('/admins/salt',admins.salt);
   app.get('/server_classrooms',classrooms.index);
   app.post('/server_classrooms',classrooms.update);
   app.get('/server_classroom/:id', classrooms.show);

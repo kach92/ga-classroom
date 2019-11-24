@@ -5,6 +5,7 @@ dotenv.config();
 module.exports = (db) =>{
 
     const login = async (req,res) =>{
+
         if(sha256(req.body.password) === process.env.PASSWORD && req.body.email === process.env.EMAIL){
             res.cookie("session", sha256(process.env.SALT));
             res.send(true);
@@ -13,7 +14,12 @@ module.exports = (db) =>{
         }
     }
 
+    const salt = async (req,res) => {
+        res.send({salt:process.env.SALT})
+    }
+
     return {
-        login
+        login,
+        salt
     }
 }

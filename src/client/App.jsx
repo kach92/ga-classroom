@@ -17,13 +17,31 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            authed :false
+            authed :false,
+            salt:null
         }
         this.checkUser = this.checkUser.bind(this);
     }
 
-    componentDidMount(){
+    async componentDidMount(){
+        const test = await this.getSalt();
         this.checkUser();
+
+    }
+
+    async getSalt(){
+        let fetchUrl = '/admins/salt';
+        return fetch(fetchUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(res => {
+            this.setState({salt:res.salt})
+        })
+        .catch(error => console.error('Error:', error));
     }
 
     checkUser(){
@@ -32,11 +50,7 @@ class App extends React.Component {
             let val = value.split("=");
             cookies[val[0]] = val[1];
         });
-        console.log(cookies.session);
-        console.log(process.env.SALT);
-        console.log(sha256(process.env.SALT));
-        console.log(cookies.session === sha256(process.env.SALT))
-        if(cookies.session === sha256(process.env.SALT)){
+        if(cookies.session === sha256(this.state.salt)){
             this.setState({
                 authed: true,
             });
