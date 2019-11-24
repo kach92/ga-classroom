@@ -12,6 +12,13 @@ class Navigation extends React.Component {
         }
     }
 
+    handleLogout(e){
+        e.preventDefault();
+        document.cookie = 'session='+"gibberish"+'; path=/';
+        this.props.checkUser();
+        this.props.history.push("/login");
+    }
+
 
     render(){
         return(
@@ -34,6 +41,7 @@ class Navigation extends React.Component {
                     <NavDropdown.Item href="/classrooms/6">CLASSROOM 6</NavDropdown.Item>
 
                   </NavDropdown>
+                  <Nav.Link onClick={(e)=>{this.handleLogout(e)}} className={mainStyles.navLink}>Logout</Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>

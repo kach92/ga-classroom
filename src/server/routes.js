@@ -2,7 +2,9 @@ module.exports = (app, db) => {
 
   const classrooms = require('./controllers/classrooms')(db);
   const classes = require('./controllers/classes')(db);
+  const admins = require('./controllers/admins')(db);
 
+  app.post('/login',admins.login);
   app.get('/server_classrooms',classrooms.index);
   app.post('/server_classrooms',classrooms.update);
   app.get('/server_classroom/:id', classrooms.show);
