@@ -34,6 +34,7 @@ class App extends React.Component {
         });
         console.log(cookies.session);
         console.log(process.env.SALT);
+        console.log(sha256(process.env.SALT));
         console.log(cookies.session === sha256(process.env.SALT))
         if(cookies.session === sha256(process.env.SALT)){
             this.setState({
