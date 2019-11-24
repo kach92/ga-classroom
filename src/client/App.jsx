@@ -32,6 +32,9 @@ class App extends React.Component {
             let val = value.split("=");
             cookies[val[0]] = val[1];
         });
+        console.log(cookies.session);
+        console.log(process.env.SALT);
+        console.log(cookies.session === sha256(process.env.SALT))
         if(cookies.session === sha256(process.env.SALT)){
             this.setState({
                 authed: true,
@@ -41,7 +44,6 @@ class App extends React.Component {
                 authed: false
             });
         }
-        console.log(this.state.authed)
     }
 
 

@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 const commonConfig = require('./webpack.config.common');
+const dotenv = require('dotenv');
 const env = dotenv.config().parsed;
 
   // reduce it to a nice object, the same as before
