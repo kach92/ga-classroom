@@ -9,7 +9,7 @@ module.exports = (dbPoolInstance) => {
                 return Promise.reject(new Error("classroom#all return null"));
             }
         }catch(error){
-            console.log("classroom#all model error")
+            console.log("classroom#all model error " + error);
         }
     }
 
@@ -24,7 +24,7 @@ module.exports = (dbPoolInstance) => {
                 return Promise.reject(new Error("create trip return null"));
             }
         }catch(error){
-            console.log("classroom#find model error")
+            console.log("classroom#find model error " + error);
         }
 
 
@@ -33,14 +33,14 @@ module.exports = (dbPoolInstance) => {
     const updateAll = async(classroom_details) =>{
         try{
             classroom_details.forEach(async (x)=>{
-                const query = "UPDATE classrooms SET class_id = $1 WHERE id = $2"
+                const query = "UPDATE classrooms SET class_id = $1 WHERE id = $2";
                 const arr = [x.class_id,x.id];
                 const update = await dbPoolInstance.query(query,arr);
             })
             return true;
 
         }catch(error){
-            console.log("classroom#update model error")
+            console.log("classroom#update model error " + error);
         }
     }
 

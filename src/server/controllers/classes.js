@@ -13,7 +13,7 @@ module.exports = (db) =>{
             const class1 = await db.class1.find(req.params.id);
             res.send(class1);
         }catch(error){
-            console.log("classes#show controller error");
+            console.log("classes#show controller error "+ error);
         }
     }
 
@@ -22,8 +22,7 @@ module.exports = (db) =>{
             const newClass = await db.class1.save(req.body.data);
             res.send(newClass);
         }catch(error){
-            console.log(error);
-            console.log("classes#create controller error");
+            console.log("classes#create controller error " + error);
         }
     }
 
@@ -32,8 +31,7 @@ module.exports = (db) =>{
             const deletedClass = await db.class1.deleteClass(req.params.id);
             res.send(deletedClass);
         }catch(error){
-            console.log(error);
-            console.log("classes#delete controller error");
+            console.log("classes#delete controller error " + error);
         }
     }
 

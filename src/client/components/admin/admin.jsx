@@ -7,9 +7,6 @@ class AdminHome extends React.Component {
         super(props);
 
     }
-
-
-
     render(){
         return(
                 <div>
@@ -19,7 +16,6 @@ class AdminHome extends React.Component {
 
             )
     }
-
 
 }
 

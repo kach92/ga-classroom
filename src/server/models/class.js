@@ -9,7 +9,7 @@ module.exports = (dbPoolInstance) => {
                 return Promise.reject(new Error("class#all return null"));
             }
         }catch(error){
-            console.log("class#all model error")
+            console.log("class#all model error " + error);
         }
     }
 
@@ -24,7 +24,7 @@ module.exports = (dbPoolInstance) => {
                 return Promise.reject(new Error("class#find return null"));
             }
         }catch(error){
-            console.log("class#find model error")
+            console.log("class#find model error " + error);
         }
     }
 
@@ -39,8 +39,7 @@ module.exports = (dbPoolInstance) => {
                 return Promise.reject(new Error("class#save return null"));
             }
         }catch(error){
-            console.log(error)
-            console.log("class#save model error");
+            console.log("class#save model error " + error);
         }
     }
 
@@ -59,7 +58,7 @@ module.exports = (dbPoolInstance) => {
             if(error.code === "23503"){
                 return false;
             }else{
-                console.log("class#delete model error");
+                console.log("class#delete model error " + error);
             }
 
         }

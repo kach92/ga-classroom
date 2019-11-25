@@ -15,7 +15,7 @@ module.exports = (db) =>{
     }
 
     const salt = async (req,res) => {
-        res.send({salt:process.env.SALT})
+        res.send({salt:process.env.SALT});
     }
 
     return {

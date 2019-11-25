@@ -4,21 +4,17 @@ module.exports = (db) =>{
             const classrooms = await db.classroom.all();
             const classes = await db.class1.all();
 
-            const data = {
-                classrooms,
-                classes
-            }
-            res.send(data);
+            res.send({classrooms,classes});
         }catch(error){
-            console.log("classrooms#index controller error")
+            console.log("classrooms#index controller error " + error)
         }
     }
     const show = async (req,res) => {
         try{
             let classroom = await db.classroom.find(req.params.id);
-            res.send(classroom)
+            res.send(classroom);
         }catch(error){
-            console.log("classrooms#show controller error")
+            console.log("classrooms#show controller error " + error);
         }
     }
 
@@ -30,7 +26,7 @@ module.exports = (db) =>{
                 res.send(true);
             }
         }catch(error){
-            console.log("classroom#update controller error")
+            console.log("classroom#update controller error " +error)
         }
     }
 
