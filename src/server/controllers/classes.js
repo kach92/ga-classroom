@@ -19,6 +19,9 @@ module.exports = (db) =>{
 
     const create = async (req,res) => {
         try{
+            Object.keys(req.body.data).forEach(x=>{
+                req.body.data[x] = req.body.data[x].toUpperCase();
+            })
             const newClass = await db.class1.save(req.body.data);
             res.send(newClass);
         }catch(error){
