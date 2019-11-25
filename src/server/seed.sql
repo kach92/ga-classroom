@@ -7,3 +7,4 @@ INSERT INTO classrooms (class_id) VALUES (2);
 INSERT INTO classrooms (class_id) VALUES (null);
 INSERT INTO classrooms (class_id) VALUES (null);
 INSERT INTO classrooms (class_id) VALUES (null);
+INSERT INTO classrooms (class_id) VALUES (null);

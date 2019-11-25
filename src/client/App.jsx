@@ -73,14 +73,14 @@ class App extends React.Component {
 
                     <Switch>
                         <Route path="/login" render={props => (
-                            this.state.authed ? <Redirect to="/admin/rooms"/> : <Login checkUser={this.checkUser}{...props}/>
+                            this.state.authed ? <Redirect to="/admin/rooms"/> : <Login checkUser={this.checkUser} {...props}/>
                             )} />
                         <Route path="/admin/rooms" render={props => (
                             this.state.authed ? <Rooms {...props}/> : <Redirect to="/login"/>
 
                             )} />
                         <Route path="/admin/classes" render={props => (
-                            this.state.authed ? <ClassIndex {...props}/> : <Redirect to="/login"/>
+                            this.state.authed ? <ClassIndex {...props}/> : <Login checkUser={this.checkUser} {...props}/>
 
                             )} />
                         <Route path="/classrooms/:id" render={props =>(
