@@ -63,7 +63,7 @@ class Rooms extends React.Component {
         }else if( URL.includes("http://localhost") ){
             this.state.endpoint = "http://127.0.0.1:3000";
         }else{
-            this.state.endpoint = "https://ga-classroom-display.herokuapp.com";
+            this.state.endpoint = "https://ga-classroom-controller.herokuapp.com";
         }
         this.setState({endpoint:this.state.endpoint})
     }
