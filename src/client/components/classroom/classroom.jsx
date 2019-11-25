@@ -39,7 +39,7 @@ class Classroom extends React.Component {
         }else if( URL.includes("http://localhost") ){
             this.endpoint = "http://localhost";
         }else{
-            this.endpoint = "https://ga-classroom-display.herokuapp.com";
+            this.endpoint = "https://ga-classroom-controller.herokuapp.com";
         }
     }
 
