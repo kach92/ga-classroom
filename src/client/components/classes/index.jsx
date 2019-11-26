@@ -49,9 +49,17 @@ class ClassIndex extends React.Component {
     }
 
     handleClose(e){
+            this.state.new = {
+                nickname:"",
+                title:"",
+                instructor:"",
+                starttime:"",
+                endtime:""
+            };
             this.setState({
                 show:false,
-                errorMsg:""
+                errorMsg:"",
+                new:this.state.new
             })
     }
 
@@ -64,11 +72,11 @@ class ClassIndex extends React.Component {
         this.setState({new:this.state.new});
     }
 
-    postNewClass(){
+    async postNewClass(){
         const data = {
             data : this.state.new
         }
-        fetch('/server_classes', {
+        return fetch('/server_classes', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -78,7 +86,17 @@ class ClassIndex extends React.Component {
         .then(res => res.json())
         .then(res => {
             this.state.classes.unshift(res);
-            this.setState({classes:this.state.classes});
+            this.state.new = {
+                nickname:"",
+                title:"",
+                instructor:"",
+                starttime:"",
+                endtime:""
+            };
+            this.setState({
+                classes:this.state.classes,
+                new:this.state.new
+            });
         })
         .catch(error => console.error('Error:', error));
     }
@@ -87,14 +105,14 @@ class ClassIndex extends React.Component {
         location.reload();
     }
 
-    checkSave(e){
+    async checkSave(e){
         e.preventDefault();
         let details = this.state.new
-        if(details.title === "" || details.instructor === "" || details.starttime === "" || details.endtime === "", details.nickname === ""){
+        if(details.title === "" || details.starttime === "" || details.endtime === "", details.nickname === ""){
             this.setState({errorMsg:"*Please fill in all fields before saving."})
         }else{
+            const test = await this.postNewClass();
             this.handleClose();
-            this.postNewClass();
         }
     }
 
