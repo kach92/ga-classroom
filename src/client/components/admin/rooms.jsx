@@ -97,7 +97,7 @@ class Rooms extends React.Component {
 
     render(){
         const classes = this.state.classes? this.state.classes : "";
-        const currentClasses = this.state.rooms? this.state.rooms.map(x=><RoomRow key={x.id} roomDetails={x} allClasses={this.state.classes} updateRoomWholeState={this.updateRoomWholeState}/>) : "";
+        const currentClasses = this.state.rooms? this.state.rooms.map(x=><RoomRow key={x.id} roomDetails={x} allClasses={[...this.state.classes]} updateRoomWholeState={this.updateRoomWholeState}/>) : "";
         return(
                 <div className={mainStyles.mainContainer}>
 

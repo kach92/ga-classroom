@@ -42,10 +42,9 @@ class RoomRow extends React.Component {
 
 
     async nickSelectChange(e){
-            const class_id = e.target.value;
-            const newClassDetails = await this.getClassDetails(class_id);
-            this.props.updateRoomWholeState(this.state.room_id,newClassDetails);
-            console.log(newClassDetails)
+        const class_id = e.target.value;
+        const newClassDetails = await this.getClassDetails(class_id);
+        this.props.updateRoomWholeState(this.state.room_id,newClassDetails);
 
     }
 

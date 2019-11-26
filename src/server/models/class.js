@@ -1,7 +1,7 @@
 module.exports = (dbPoolInstance) => {
     const all = async() => {
         try{
-            const query = 'SELECT * FROM classes ORDER BY id DESC';
+            const query = 'SELECT * FROM classes ORDER BY nickname ASC';
             const queryResult = await dbPoolInstance.query(query);
             if (queryResult.rows.length > 0) {
                 return queryResult.rows;
