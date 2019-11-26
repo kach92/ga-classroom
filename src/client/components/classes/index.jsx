@@ -108,7 +108,7 @@ class ClassIndex extends React.Component {
 
 
     render(){
-        const classList = this.state.classesDisplay? this.state.classesDisplay.map(x=><ClassRow handleDelete={this.handleDelete} key={x.id} details={x}/>) : "";
+        const classList = this.state.classesDisplay? this.state.classesDisplay.sort((a,b)=>a.nickname.toLowerCase() > b.nickname.toLowerCase() ? 1 : -1).map(x=><ClassRow handleDelete={this.handleDelete} key={x.id} details={x}/>) : "";
         return(
 
                 <div className={mainStyles.mainContainer}>
